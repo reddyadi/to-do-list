@@ -1,0 +1,30 @@
+h2{
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+.form_div{
+  border: 1px solid black;
+  border-radius: 1em;
+  width: 50em;
+  padding-top: 1em;
+  margin-left: 9em;
+}
+
+li{
+  list-style: none;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.close{
+  margin-right: 1.5em;
+  font-size: 1.25em;
+}
+
+.checked{
+  background: #9BFA41;
+  color: #fff;
+  text-decoration: line-through;
+  margin-right: 1em;
+}

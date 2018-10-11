@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2><u>To-Do List</u></h2>
+      <br>
+      <div class="form_div">
+        <div class="input-group mb-3">
+          <input id="input" type="text" class="form-control" placeholder="Add to-do list" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button id="add" class="btn btn-outline-secondary" type="button">Add to List</button>
+            </div>
+        </div>
+        <div class="">
+          <ul id="myUl">
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+      (function() {
+
+        //Initializing createElement function
+        function createElement () {
+          //Declaring variables to store and create data to add to list
+          var li = document.createElement('li');
+          var inputValue = document.getElementById('input').value;
+          var text = document.createTextNode(inputValue);
+          li.setAttribute('class', 'li-element');
+
+          //adds text (createNode) to list item (created Element)
+          li.appendChild(text);
+
+          if(inputValue === '') {
+            alert('Write something in textbox');
+          } else {
+            //li varaible holding nodeText value added to UL
+            document.getElementById('myUl').appendChild(li);
+          };
+          //Input textbox is reset to null
+          document.getElementById('input').value = '';
+
+          //Code to create a close icon/button
+          var span = document.createElement('span');
+          //this creates a close icon
+          var txt = document.createTextNode("\u00D7");
+          //giving span a className of close
+          span.className = "close";
+          //adding the close icon into the span tag
+          span.appendChild(txt);
+          //adding the span with stored values in tag next to the list item
+          li.appendChild(span);
+
+          closeItem();
+
+        }//Function ENDS*
+
+        //function to close list item when the close icon is clicked.
+        function closeItem () {
+          var close = document.getElementsByClassName('close');
+          for (var i = 0; i < close.length; i++) {
+            close[i].onclick = function() {
+              var div = this.parentElement;
+              div.style.display = "none";
+            }
+          }
+        }//Function ENDS*
+
+
+        //function to cross element out
+        function crossItem (e) {
+          if(e.target.className === "li-element" || e.target.className === 'li-element checked') {
+            e.target.classList.toggle('checked');
+          }
+        }//Function ENDS*
+
+        //varibale to initiate EventListener to render createElement function
+        var button = document.getElementById('add');
+        button.addEventListener('click', createElement, false);
+
+        //variable to initiate EventListener to render crossItem function
+        var cross = document.querySelector('ul');
+        cross.addEventListener('click', crossItem, false);
+
+    }()); //IIFE ENDS
+
+    </script>
+  </body>
+</html>
